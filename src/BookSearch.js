@@ -1,43 +1,25 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import * as BooksAPI from './BooksAPI';
 import BookShelf from './BookShelf';
+import BookSearchInput from './BookSearchInput';
 
 class BookSearch extends Component {
     state = {
-        query: "",
         books: []
     }
 
-    updateQuery = (query) => {
-        // this.setState(function (state){
-        //     BooksAPI.search(query, 10).then(books => ({query , books: JSON.parse(books)}))   
-        // }
+    updateQuery = (value) => {
+        BooksAPI.search(value, 10).then(books => this.setState({ books }))
     }
 
     render() {
         return (
             <div className="search-books">
-                <div className="search-books-bar">
-                    <Link to="/" className="close-search">Close</Link>
-                    <div className="search-books-input-wrapper">
-                        {/* 
-                        NOTES: The search from BooksAPI is limited to a particular set of search terms.
-                        You can find these search terms here:
-                        https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-                        
-                        However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-                        you don't find a specific author or title. Every search is limited by search terms.
-                      */}
-                        <input type="text" value={this.state.query} placeholder="Search by title or author" onChange={(e) => this.updateQuery(e.target.value)} />
-
-                    </div>
-                </div>
+                <BookSearchInput handleQueryUpdate={this.updateQuery} />
                 <div className="search-books-results">
-                    <BookShelf books={this.state.books}/>
+                    <BookShelf books={this.state.books} />
                 </div>
             </div>
-
         );
     }
 }
