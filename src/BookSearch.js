@@ -8,8 +8,16 @@ class BookSearch extends Component {
         books: []
     }
 
+    handleUpdate = (book, shelf) => {
+        BooksAPI.update(book, shelf).then(
+            b => console.log(b)
+        )
+    }
+
     updateQuery = (value) => {
-        BooksAPI.search(value, 10).then(books => this.setState({ books }))
+        BooksAPI.search(value, 10).then(
+            books => this.setState({ books })
+        )
     }
 
     render() {
@@ -17,7 +25,7 @@ class BookSearch extends Component {
             <div className="search-books">
                 <BookSearchInput handleQueryUpdate={this.updateQuery} />
                 <div className="search-books-results">
-                    <BookShelf books={this.state.books} />
+                    <BookShelf books={this.state.books} handleShelfUpdate={this.handleUpdate} />
                 </div>
             </div>
         );

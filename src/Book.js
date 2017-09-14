@@ -1,36 +1,29 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class Book extends Component {
-    state = {
-        shelf: 'none'
-    }
-    
-    handleChange = (event) => {
-        this.setState({shelf: event.target.value},() => {this.props.onUpdate(this.state.shelf);
-        });
-    }
-    
-    render() {
-        const {coverUrl, title, authors } = this.props;
-        return (
-            <div className="book">
-                <div className="book-top">
-                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${coverUrl})` }}></div>
-                    <div className="book-shelf-changer">
-                        <select value={this.state.shelf} onChange={this.handleChange}>
-                            <option value="none" disabled>Move to...</option>
-                            <option value="currentlyReading">Currently Reading</option>
-                            <option value="wantToRead">Want to Read</option>
-                            <option value="read">Read</option>
-                            <option value="none">None</option>
-                        </select>
-                    </div>
+
+const Book = ({ book, bookShelfUpdate, currentShelf = "none" }) => {
+    const onShelfSelect = (event) => {        
+        bookShelfUpdate(book, event.target.value);
+    };
+
+    return (
+        <div className="book">
+            <div className="book-top">
+                <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
+                <div className="book-shelf-changer">
+                    <select value={currentShelf} onChange={onShelfSelect}>
+                        <option value="none" disabled>Move to...</option>
+                        <option value="currentlyReading">Currently Reading</option>
+                        <option value="wantToRead">Want to Read</option>
+                        <option value="read">Read</option>
+                        <option value="none">None</option>
+                    </select>
                 </div>
-                <div className="book-title">{title}</div>
-                <div className="book-authors">{authors}</div>
             </div>
-        );
-    }
+            <div className="book-title">{book.title}</div>
+            <div className="book-authors">{book.authors}</div>
+        </div>
+    );
 }
 
 export default Book;

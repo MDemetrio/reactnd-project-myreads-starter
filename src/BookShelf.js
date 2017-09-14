@@ -1,21 +1,19 @@
 import React from 'react';
 import Book from './Book';
-import * as BooksAPI from './BooksAPI';
 
-const BookShelf = ({ books, name = "" }) => {
-    function handleUpdate (book, shelf) {
-        console.log(shelf);
-        BooksAPI.update(book,shelf)
-    }
+const BookShelf = ({ books, handleShelfUpdate, name = "" }) => {
+    const renderBook = book => {
+        return <Book book={book} bookShelfUpdate={handleShelfUpdate} currentShelf={book.shelf} />;
+      }
 
     return (
         <div className="bookshelf">
-            {name && <h2 className="bookshelf-title">{name}</h2>}
+            { name && <h2 className="bookshelf-title">{name}</h2> }
             <div className="bookshelf-books">
                 <ol className="books-grid">
                     {books.map(book =>
                         <li key={book.id}>
-                            <Book onUpdate={(shelf) => handleUpdate(book, shelf)} coverUrl={book.imageLinks.thumbnail} name={book.title} authors={book.authors} />
+                            {renderBook(book)}
                         </li>
                     )}
                 </ol>

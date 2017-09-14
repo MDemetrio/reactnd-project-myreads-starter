@@ -13,18 +13,26 @@ class BookShelves extends Component {
         this.setState({ books: JSON.parse(books) });
     }
 
-    componentDidMount() {
+    componentDidMount() {        
         BooksAPI.getAll().then((books => {
             this.setState({ books });
             window.localStorage.setItem('books', JSON.stringify(books));
         }))
     }
 
+    handleUpdate = (book, shelf) => {
+        const booksCopy = Object.assign([], this.state.books);
+        booksCopy[booksCopy.findIndex(b => b.id === book.id)].shelf = shelf;
+        BooksAPI.update(book, shelf).then(() => {
+            this.setState({ books: booksCopy })
+        })
+    }
+
     render() {
         const wantToReadBooks = this.state.books.filter(x => x.shelf === 'wantToRead');
         const currentlyReadingBooks = this.state.books.filter(x => x.shelf === 'currentlyReading');
         const readBooks = this.state.books.filter(x => x.shelf === 'read');
-
+        
         return (
             <div className="list-books">
                 <div className="list-books-title">
@@ -32,9 +40,9 @@ class BookShelves extends Component {
                 </div>
                 <div className="list-books-content">
                     <div>
-                        <BookShelf name="Want to Read" books={wantToReadBooks} />
-                        <BookShelf name="Read" books={currentlyReadingBooks} />
-                        <BookShelf name="Reading" books={readBooks} />
+                        <BookShelf name="Want to Read" books={wantToReadBooks} handleShelfUpdate={this.handleUpdate} />
+                        <BookShelf name="Read" books={readBooks} handleShelfUpdate={this.handleUpdate} />
+                        <BookShelf name="Reading" books={currentlyReadingBooks} handleShelfUpdate={this.handleUpdate} />
                     </div>
                 </div>
                 <div className="open-search">
