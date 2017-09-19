@@ -40,9 +40,9 @@ class BookShelves extends Component {
                 </div>
                 <div className="list-books-content">
                     <div>
-                        <BookShelf name="Want to Read" books={wantToReadBooks} handleShelfUpdate={this.handleUpdate} />
-                        <BookShelf name="Read" books={readBooks} handleShelfUpdate={this.handleUpdate} />
-                        <BookShelf name="Reading" books={currentlyReadingBooks} handleShelfUpdate={this.handleUpdate} />
+                        <BookShelf shelf="wantToRead" books={wantToReadBooks} handleShelfUpdate={this.handleUpdate} />
+                        <BookShelf shelf="read" books={readBooks} handleShelfUpdate={this.handleUpdate} />
+                        <BookShelf shelf="currentlyReading" books={currentlyReadingBooks} handleShelfUpdate={this.handleUpdate} />
                     </div>
                 </div>
                 <div className="open-search">
