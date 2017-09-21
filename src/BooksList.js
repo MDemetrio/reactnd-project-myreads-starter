@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import * as BooksAPI from './BooksAPI';
 import BookShelf from './BookShelf';
+import Book from './Book';
 
 class BookShelves extends Component {
     state = {
@@ -13,7 +14,7 @@ class BookShelves extends Component {
         this.setState({ books: JSON.parse(books) });
     }
 
-    componentDidMount() {        
+    componentDidMount() {
         BooksAPI.getAll().then((books => {
             this.setState({ books });
             window.localStorage.setItem('books', JSON.stringify(books));
@@ -28,11 +29,20 @@ class BookShelves extends Component {
         })
     }
 
+    renderShelf = ({ shelf, name }) => {
+        const books = this.state.books.filter(x => x.shelf === shelf);
+        return (
+            <BookShelf shelf={shelf} name={name}>
+                {books.map(book =>
+                    <li key={book.id}>
+                        <Book book={book} bookShelfUpdate={this.handleUpdate} />
+                    </li>
+                )}
+            </BookShelf>
+        )
+    }
+
     render() {
-        const wantToReadBooks = this.state.books.filter(x => x.shelf === 'wantToRead');
-        const currentlyReadingBooks = this.state.books.filter(x => x.shelf === 'currentlyReading');
-        const readBooks = this.state.books.filter(x => x.shelf === 'read');
-        
         return (
             <div className="list-books">
                 <div className="list-books-title">
@@ -40,9 +50,9 @@ class BookShelves extends Component {
                 </div>
                 <div className="list-books-content">
                     <div>
-                        <BookShelf shelf="wantToRead" books={wantToReadBooks} handleShelfUpdate={this.handleUpdate} />
-                        <BookShelf shelf="read" books={readBooks} handleShelfUpdate={this.handleUpdate} />
-                        <BookShelf shelf="currentlyReading" books={currentlyReadingBooks} handleShelfUpdate={this.handleUpdate} />
+                        {this.renderShelf({ shelf: "wantToRead", name: "Want to Read" })}
+                        {this.renderShelf({ shelf: "read", name: "Read" })}
+                        {this.renderShelf({ shelf: "currentlyReading", name: "Currently Reading" })}
                     </div>
                 </div>
                 <div className="open-search">

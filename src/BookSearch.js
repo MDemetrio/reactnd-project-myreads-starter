@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as BooksAPI from './BooksAPI';
 import BookShelf from './BookShelf';
 import BookSearchInput from './BookSearchInput';
+import Book from './Book';
 
 class BookSearch extends Component {
     state = {
@@ -9,9 +10,7 @@ class BookSearch extends Component {
     }
 
     handleUpdate = (book, shelf) => {
-        BooksAPI.update(book, shelf).then(
-            b => console.log(b)
-        )
+        BooksAPI.update(book, shelf)
     }
 
     updateQuery = (value) => {
@@ -25,7 +24,13 @@ class BookSearch extends Component {
             <div className="search-books">
                 <BookSearchInput handleQueryUpdate={this.updateQuery} />
                 <div className="search-books-results">
-                    <BookShelf books={this.state.books} handleShelfUpdate={this.handleUpdate} />
+                    <BookShelf name="Search Results:">
+                        {this.state.books.map(book =>
+                            <li key={book.id}>
+                                <Book book={book} bookShelfUpdate={this.handleUpdate} />
+                            </li>
+                        )}
+                    </BookShelf>
                 </div>
             </div>
         );

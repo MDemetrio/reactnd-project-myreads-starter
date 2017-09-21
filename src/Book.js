@@ -34,7 +34,7 @@ const Book = ({ isDragging, connectDragSource, book, bookShelfUpdate }) => {
     };
 
     return connectDragSource(
-        <div className="book" onClick={() => console.log("clicked")}>
+        <div className="book">
             <div className="book-top">
                 <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                 <div className="book-shelf-changer">
