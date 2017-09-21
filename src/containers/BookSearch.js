@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import * as BooksAPI from './BooksAPI';
-import BookShelf from './BookShelf';
-import BookSearchInput from './BookSearchInput';
-import Book from './Book';
+import * as BooksAPI from '../BooksAPI';
+import BookShelf from '../components/BookShelf';
+import BookSearchInput from '../components/BookSearchInput';
+import Book from '../components/Book';
 
 class BookSearch extends Component {
     state = {
@@ -27,7 +27,7 @@ class BookSearch extends Component {
                     <BookShelf name="Search Results:">
                         {this.state.books.map(book =>
                             <li key={book.id}>
-                                <Book book={book} bookShelfUpdate={this.handleUpdate} />
+                                <Book {...book} bookShelfUpdate={this.handleUpdate} />
                             </li>
                         )}
                     </BookShelf>

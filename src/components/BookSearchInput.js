@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import SEARCH_TERMS from './SEARCH_TERMS';
+import SEARCH_TERMS from '../SEARCH_TERMS';
 import Autosuggest from 'react-autosuggest';
 
 const getSuggestions = value => {

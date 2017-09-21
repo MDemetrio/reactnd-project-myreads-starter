@@ -27,7 +27,7 @@ function collect(connect, monitor) {
     };
 }
 
-const Book = ({ isDragging, connectDragSource, book, bookShelfUpdate }) => {
+const Book = ({ isDragging, connectDragSource, bookShelfUpdate, ...book }) => {
 
     const onShelfSelect = (event) => {
         bookShelfUpdate(book, event.target.value);

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import * as BooksAPI from './BooksAPI';
-import BookShelf from './BookShelf';
-import Book from './Book';
+import * as BooksAPI from '../BooksAPI';
+import BookShelf from '../components/BookShelf';
+import Book from '../components/Book';
 
 class BookShelves extends Component {
     state = {
@@ -35,7 +35,7 @@ class BookShelves extends Component {
             <BookShelf shelf={shelf} name={name}>
                 {books.map(book =>
                     <li key={book.id}>
-                        <Book book={book} bookShelfUpdate={this.handleUpdate} />
+                        <Book {...book} bookShelfUpdate={this.handleUpdate} />
                     </li>
                 )}
             </BookShelf>
