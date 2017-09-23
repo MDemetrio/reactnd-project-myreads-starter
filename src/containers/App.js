@@ -22,8 +22,18 @@ function sortBooks(books) {
 }
 
 class BooksApp extends React.Component {
-  state = {
-    myBooks: []
+
+  //  ES7 Property Initializers method
+  //  state = {
+  //    myBooks: []
+  //  }
+
+  //  Keeping with Constructor method, since it's recomended by react docs
+  constructor(props) {
+    super(props);
+    this.state = {
+      myBooks: []
+    };
   }
 
   componentWillMount() {
