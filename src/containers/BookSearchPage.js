@@ -12,7 +12,7 @@ class BookSearchPage extends Component {
 
     updateQuery = (query) => {
         BooksAPI.search(query, 10).then((results) => {
-            results.forEach(b => {
+            Array.isArray(results) && results.forEach(b => {
                 const x = this.props.myBooks.find(x => x.id === b.id);
                 if (x)
                     b.shelf = x.shelf;
@@ -27,7 +27,7 @@ class BookSearchPage extends Component {
         this.props.handleUpdate(book, shelf);
         this.setState((prevState) => {
             prevState.searchResults.find(b => b.id === book.id).shelf = shelf;
-            return {searchResults: prevState.searchResults}
+            return { searchResults: prevState.searchResults }
         })
     }
 
@@ -37,7 +37,7 @@ class BookSearchPage extends Component {
                 <BookSearchInput handleQueryUpdate={this.updateQuery} />
                 <div className="search-books-results">
                     <BookShelf name={this.state.query ? `Search Results for ${this.state.query}` : "Search Results"}>
-                        {this.state.searchResults.map(book =>
+                        {Array.isArray(this.state.searchResults) && this.state.searchResults.map(book =>
                             <li key={book.id}>
                                 <Book book={book} bookShelfUpdate={this.updateBook} />
                             </li>

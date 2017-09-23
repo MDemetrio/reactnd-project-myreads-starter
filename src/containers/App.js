@@ -47,7 +47,9 @@ class BooksApp extends React.Component {
       this.setStorage();
     }))
   }
-
+  
+  //TODO: Study service workers to implement real offline experience 
+  //https://medium.com/@addyosmani/progressive-web-apps-with-react-js-part-3-offline-support-and-network-resilience-c84db889162c
   setStorage = () => {
     window.localStorage.setItem('books', JSON.stringify(this.state.myBooks));
   }
