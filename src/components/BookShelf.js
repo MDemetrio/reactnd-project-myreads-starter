@@ -14,11 +14,12 @@ function collect(connect, monitor) {
     };
 }
 
-const BookShelf = ({ connectDropTarget, children, name }) => {
+const BookShelf = ({ isOver, connectDropTarget, children, name }) => {
+    const style = isOver ? { background: 'rgba(0,0,0,0.05)'} : {}
     return connectDropTarget(
         <div className="bookshelf">
             <h2 className="bookshelf-title">{name}</h2>
-            <div className="bookshelf-books">
+            <div className="bookshelf-books" style={style}>
                 <ol className="books-grid">
                     {children}
                 </ol>
