@@ -1,3 +1,15 @@
+This project is my submission for Udacity's React Fundamentals course.
+I choose to fork the starter template since my goal was just to apply the react specific knowledge i get from the course and try to add drag and drop as a feature tha goes beyond the minimum requirements of the project.
+
+[You can check the Demo on heroku](https://react-nd-myreads-mdemetrio.herokuapp.com/)
+
+# Spotlight
+I used [React DnD](http://react-dnd.github.io/react-dnd/) to implement book dragging to shelves. It is really easy to understand its basics once you understand that its all about data, it got me excited about react capabilities and i learned a lot from it.
+
+![Drag and drop](https://github.com/MDemetrio/reactnd-project-myreads-starter/blob/master/myreads.gif)
+
+## Starter template readme below
+
 This is the starter template for the final assessment project for Udacity's React Fundamentals course, developed by [React Training](https://reacttraining.com). The goal of this template is to save you time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. If you choose to start with this template, your job will be to add interactivity to the app by refactoring the static code in this template.
 
 Of course, you are free to start this project from scratch if you wish! Just be sure to use [Create React App](https://github.com/facebookincubator/create-react-app) to bootstrap the project.
