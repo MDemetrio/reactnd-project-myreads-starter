@@ -1,7 +1,21 @@
 This project is my submission for Udacity's React Fundamentals course.
 I choose to fork the starter template since my goal was just to apply the react specific knowledge i get from the course and try to add drag and drop as a feature tha goes beyond the minimum requirements of the project.
 
-[You can check the Demo on heroku](https://react-nd-myreads-mdemetrio.herokuapp.com/)
+### [You can check the Demo on heroku](https://react-nd-myreads-mdemetrio.herokuapp.com/)
+
+### Or you can run locally on your machine:
+
+Clone the project or download as .zip:
+
+``` git clone https://github.com/MDemetrio/reactnd-project-myreads-starter.git ```
+
+This project dependencies are managed by npm that is included in [node.js](https://nodejs.org/en/).
+
+Once npm is installed in your machine, cd into the project directory and:
+
+Run ``` npm install ``` to install project dependencies, then
+
+Run ``` npm start ``` to start the local dev server.
 
 # Spotlight
 I used [React DnD](http://react-dnd.github.io/react-dnd/) to implement book dragging to shelves. It is really easy to understand its basics once you understand that its all about data, it got me excited about react capabilities and i learned a lot from it.
