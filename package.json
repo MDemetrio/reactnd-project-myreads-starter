@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "prop-types": "^15.5.8",
-    "react": "^15.5.4",
+    "react": "^15.7.0",
     "react-autosuggest": "^9.3.2",
     "react-debounce-input": "^3.0.1",
     "react-dnd": "^2.5.1",
